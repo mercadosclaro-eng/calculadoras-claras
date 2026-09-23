@@ -5,3 +5,6 @@ Herramientas gratuitas en español para calcular sueldo neto aproximado, cuota d
 Cada herramienta muestra sus supuestos y fórmulas. Los datos se procesan localmente en el navegador, sin cuentas ni envío a servidores.
 
 URL: https://mercadosclaro-eng.github.io/calculadoras-claras/
+
+- Auto loan calculator (English): /en/auto-loan-calculator.html
+- Calculadora de préstamo de coche (Español): /prestamo-coche.html
