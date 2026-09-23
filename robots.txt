@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mercadosclaro-eng.github.io/calculadoras-claras/sitemap.xml

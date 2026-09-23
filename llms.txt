@@ -1,0 +1,7 @@
+# Calculadoras Claras
+
+Herramientas gratuitas en español para calcular sueldo neto aproximado, cuota de hipoteca fija, porcentajes, descuentos e IVA.
+
+Cada herramienta muestra sus supuestos y fórmulas. Los datos se procesan localmente en el navegador, sin cuentas ni envío a servidores.
+
+URL: https://mercadosclaro-eng.github.io/calculadoras-claras/
