@@ -24,11 +24,13 @@ jobs:
               "https://mercadosclaro-eng.github.io/calculadoras-claras/hipoteca.html",
               "https://mercadosclaro-eng.github.io/calculadoras-claras/porcentajes.html",
               "https://mercadosclaro-eng.github.io/calculadoras-claras/prestamo-coche.html",
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/comprar-o-alquilar.html",
               "https://mercadosclaro-eng.github.io/calculadoras-claras/en/",
               "https://mercadosclaro-eng.github.io/calculadoras-claras/en/net-salary-calculator.html",
               "https://mercadosclaro-eng.github.io/calculadoras-claras/en/mortgage-calculator.html",
               "https://mercadosclaro-eng.github.io/calculadoras-claras/en/percentage-calculator.html",
-              "https://mercadosclaro-eng.github.io/calculadoras-claras/en/auto-loan-calculator.html"
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/en/auto-loan-calculator.html",
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/en/rent-vs-buy-calculator.html"
             ]
           }
           JSON
