@@ -12,7 +12,7 @@
   <link rel="alternate" hreflang="x-default" href="https://mercadosclaro-eng.github.io/calculadoras-claras/en/loan-calculator.html">
   <link rel="stylesheet" href="style.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de préstamo con pagos extra","url":"https://mercadosclaro-eng.github.io/calculadoras-claras/prestamo.html","applicationCategory":"FinanceApplication","operatingSystem":"Cualquier navegador","inLanguage":"es","isAccessibleForFree":true}</script>
-</head>
+<script defer src="analytics.js"></script></head>
 <body>
 <header><nav class="wrap"><a class="brand" href="./">↗ Calculadoras Claras</a><div class="navlinks"><a href="hipoteca.html">Hipoteca</a><a href="prestamo-coche.html">Coche</a><a href="en/loan-calculator.html">English</a></div></nav></header>
 <main>
@@ -37,7 +37,7 @@
     <h2>Qué conviene comprobar</h2><ul><li>Compara la TAE o coste anual equivalente, además del tipo de interés.</li><li>Revisa comisiones de apertura y amortización anticipada.</li><li>No reduzcas tu colchón de emergencia solo para adelantar pagos.</li><li>Un pago extra suele ahorrar más al principio del préstamo que al final.</li></ul>
   </article>
 </main>
-<footer><div class="wrap foot"><strong>Calculadoras Claras</strong><span>Cálculo privado en tu navegador</span><a href="./">Todas las calculadoras</a></div></footer>
+<footer><div class="wrap foot"><strong>Calculadoras Claras</strong><span>Cálculo privado en tu navegador</span><a href="./">Todas las calculadoras</a><a href="privacidad.html">Privacidad</a></div></footer>
 <script>
 const form=document.querySelector('#loan-form');
 function money(v){return new Intl.NumberFormat(navigator.language,{style:'currency',currency:document.querySelector('#currency').value,maximumFractionDigits:2}).format(v)}
