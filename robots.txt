@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# OpenAI search crawler: eligible for discovery and citation in ChatGPT Search.
+User-agent: OAI-SearchBot
+Allow: /
+
+# User-requested page visits from ChatGPT.
+User-agent: ChatGPT-User
+Allow: /
+
 Sitemap: https://mercadosclaro-eng.github.io/calculadoras-claras/sitemap.xml

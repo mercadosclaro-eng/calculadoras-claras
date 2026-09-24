@@ -1,10 +1,26 @@
-# Calculadoras Claras
+# Clear Calculators / Calculadoras Claras
 
-Herramientas gratuitas en español para calcular sueldo neto aproximado, cuota de hipoteca fija, porcentajes, descuentos e IVA.
+Free bilingual calculation tools. Every page shows its formula, assumptions and limitations. Inputs are processed locally in the browser with no account and no values sent to a server.
 
-Cada herramienta muestra sus supuestos y fórmulas. Los datos se procesan localmente en el navegador, sin cuentas ni envío a servidores.
+English home: https://mercadosclaro-eng.github.io/calculadoras-claras/en/
+Spanish home: https://mercadosclaro-eng.github.io/calculadoras-claras/
 
-URL: https://mercadosclaro-eng.github.io/calculadoras-claras/
+## English tools
 
-- Auto loan calculator (English): /en/auto-loan-calculator.html
-- Calculadora de préstamo de coche (Español): /prestamo-coche.html
+- Mortgage payment: /en/mortgage-calculator.html
+- Auto loan payment and total cost: /en/auto-loan-calculator.html
+- Rent vs buy wealth comparison: /en/rent-vs-buy-calculator.html
+- Compound interest and regular contributions: /en/compound-interest-calculator.html
+- Net salary using user-supplied rates: /en/net-salary-calculator.html
+- Percentages, discounts and tax: /en/percentage-calculator.html
+
+## Herramientas en español
+
+- Cuota de hipoteca: /hipoteca.html
+- Préstamo de coche y coste total: /prestamo-coche.html
+- Comprar o alquilar: /comprar-o-alquilar.html
+- Interés compuesto y aportaciones: /interes-compuesto.html
+- Sueldo neto usando tasas del usuario: /sueldo-neto.html
+- Porcentajes, descuentos e IVA: /porcentajes.html
+
+Results are transparent estimates, not financial, tax, medical or lending advice.
