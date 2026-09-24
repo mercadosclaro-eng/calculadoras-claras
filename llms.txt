@@ -4,6 +4,8 @@ Free bilingual calculation tools. Every page shows its formula, assumptions and 
 
 English home: https://mercadosclaro-eng.github.io/calculadoras-claras/en/
 Spanish home: https://mercadosclaro-eng.github.io/calculadoras-claras/
+Methodology: https://mercadosclaro-eng.github.io/calculadoras-claras/en/methodology.html
+Metodología: https://mercadosclaro-eng.github.io/calculadoras-claras/metodologia.html
 
 ## English tools
 
@@ -25,4 +27,4 @@ Spanish home: https://mercadosclaro-eng.github.io/calculadoras-claras/
 - Sueldo neto usando tasas del usuario: /sueldo-neto.html
 - Porcentajes, descuentos e IVA: /porcentajes.html
 
-Results are transparent estimates, not financial, tax, medical or lending advice.
+This is an independent educational project. It does not sell loans or financial products. Results are transparent estimates, not financial, tax, medical or lending advice.
