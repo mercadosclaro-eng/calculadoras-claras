@@ -8,6 +8,7 @@ Free, bilingual calculators with visible formulas and calculations performed loc
 
 - Fixed-rate mortgage payment and total interest
 - Auto loan payment, amount financed and total cost
+- General loan payment, early payoff and interest savings from extra payments
 - Rent vs buy wealth comparison with editable assumptions
 - Compound interest with monthly contributions and visible interest breakdown
 - Net salary estimate using user-provided tax and deduction rates

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calculadora de préstamo con pagos extra | Gratis</title>
+  <meta name="description" content="Calcula la cuota, intereses, fecha de liquidación y cuánto ahorras haciendo pagos extra. Incluye tabla de amortización y varias monedas.">
+  <meta name="robots" content="index,follow,max-snippet:-1">
+  <link rel="canonical" href="https://mercadosclaro-eng.github.io/calculadoras-claras/prestamo.html">
+  <link rel="alternate" hreflang="es" href="https://mercadosclaro-eng.github.io/calculadoras-claras/prestamo.html">
+  <link rel="alternate" hreflang="en" href="https://mercadosclaro-eng.github.io/calculadoras-claras/en/loan-calculator.html">
+  <link rel="alternate" hreflang="x-default" href="https://mercadosclaro-eng.github.io/calculadoras-claras/en/loan-calculator.html">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de préstamo con pagos extra","url":"https://mercadosclaro-eng.github.io/calculadoras-claras/prestamo.html","applicationCategory":"FinanceApplication","operatingSystem":"Cualquier navegador","inLanguage":"es","isAccessibleForFree":true}</script>
+</head>
+<body>
+<header><nav class="wrap"><a class="brand" href="./">↗ Calculadoras Claras</a><div class="navlinks"><a href="hipoteca.html">Hipoteca</a><a href="prestamo-coche.html">Coche</a><a href="en/loan-calculator.html">English</a></div></nav></header>
+<main>
+  <div class="wrap crumbs"><a href="./">Calculadoras</a> / Préstamo</div>
+  <section class="hero wrap"><span class="eyebrow">Préstamos · amortización anticipada</span><h1>Calculadora de préstamo con pagos extra</h1><p class="lead">Calcula la cuota y comprueba cuánto tiempo e interés puedes ahorrar pagando un poco más cada mes.</p></section>
+  <section class="tool wrap">
+    <form class="form" id="loan-form">
+      <label for="currency">Moneda</label>
+      <select id="currency"><option value="EUR">EUR — €</option><option value="USD">USD — $</option><option value="GBP">GBP — £</option><option value="MXN">MXN — $</option><option value="ARS">ARS — $</option><option value="CLP">CLP — $</option><option value="COP">COP — $</option><option value="BRL">BRL — R$</option></select>
+      <label for="amount">Importe del préstamo</label><input id="amount" type="number" min="0" step="100" value="20000">
+      <div class="row"><div><label for="years">Plazo (años)</label><input id="years" type="number" min="0.08" max="100" step="0.01" value="5"></div><div><label for="rate">Interés anual (%)</label><input id="rate" type="number" min="0" max="100" step="0.01" value="7"></div></div>
+      <label for="extra">Pago extra mensual opcional</label><input id="extra" type="number" min="0" step="1" value="50">
+      <button class="calculate" type="submit">Calcular préstamo</button>
+      <p class="note">El pago extra se aplica al capital cada mes. Comprueba antes si tu préstamo permite amortizar anticipadamente y si cobra comisión.</p>
+    </form>
+    <div class="result"><div class="result-box"><span>Pago mensual con extra</span><strong id="payment">—</strong><p>Cuota mínima: <b id="base-payment">—</b></p><p>Tiempo hasta liquidarlo: <b id="payoff">—</b></p><p>Intereses con pago extra: <b id="interest">—</b></p><p>Intereses ahorrados: <b id="saved">—</b></p></div><p class="note">Estimación para un préstamo amortizado, a tipo fijo y sin comisiones.</p></div>
+  </section>
+  <article class="content wrap">
+    <h2>Primeros 12 meses</h2><p>La tabla separa intereses y capital para que puedas comprobar cómo baja la deuda.</p>
+    <div class="table-wrap"><table class="schedule"><thead><tr><th>Mes</th><th>Pago</th><th>Interés</th><th>Capital</th><th>Saldo</th></tr></thead><tbody id="schedule"></tbody></table></div>
+    <h2>Cómo se calcula</h2><p class="formula">Cuota = P × r × (1+r)ⁿ / ((1+r)ⁿ − 1)</p><p>P es el capital, r el interés mensual y n el número de cuotas. Después simulamos cada mes aplicando el pago extra directamente al capital.</p>
+    <h2>Qué conviene comprobar</h2><ul><li>Compara la TAE o coste anual equivalente, además del tipo de interés.</li><li>Revisa comisiones de apertura y amortización anticipada.</li><li>No reduzcas tu colchón de emergencia solo para adelantar pagos.</li><li>Un pago extra suele ahorrar más al principio del préstamo que al final.</li></ul>
+  </article>
+</main>
+<footer><div class="wrap foot"><strong>Calculadoras Claras</strong><span>Cálculo privado en tu navegador</span><a href="./">Todas las calculadoras</a></div></footer>
+<script>
+const form=document.querySelector('#loan-form');
+function money(v){return new Intl.NumberFormat(navigator.language,{style:'currency',currency:document.querySelector('#currency').value,maximumFractionDigits:2}).format(v)}
+function duration(months){const y=Math.floor(months/12),m=months%12;return (y?y+' '+(y===1?'año':'años'):'')+(y&&m?' y ':'')+(m?m+' '+(m===1?'mes':'meses'):'')||'0 meses'}
+function payment(p,r,n){return r===0?p/n:p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1)}
+function simulate(p,r,monthly){let balance=p,totalInterest=0,months=0,rows=[];while(balance>0.005&&months<1200){const interest=balance*r;let paid=Math.min(monthly,balance+interest);if(paid<=interest&&balance>0)return null;const principal=paid-interest;balance=Math.max(0,balance-principal);months++;totalInterest+=interest;if(months<=12)rows.push({month:months,paid,interest,principal,balance})}return {months,totalInterest,rows}}
+function calc(){const p=Math.max(0,Number(document.querySelector('#amount').value)||0),n=Math.max(1,Math.round((Number(document.querySelector('#years').value)||0)*12)),r=Math.max(0,(Number(document.querySelector('#rate').value)||0)/1200),extra=Math.max(0,Number(document.querySelector('#extra').value)||0),base=payment(p,r,n),regular=simulate(p,r,base),accelerated=simulate(p,r,base+extra);document.querySelector('#base-payment').textContent=money(base);document.querySelector('#payment').textContent=money(base+extra);document.querySelector('#payoff').textContent=accelerated?duration(accelerated.months):'Revisa los datos';document.querySelector('#interest').textContent=accelerated?money(accelerated.totalInterest):'—';document.querySelector('#saved').textContent=accelerated&&regular?money(Math.max(0,regular.totalInterest-accelerated.totalInterest)):'—';document.querySelector('#schedule').innerHTML=accelerated?accelerated.rows.map(x=>`<tr><td>${x.month}</td><td>${money(x.paid)}</td><td>${money(x.interest)}</td><td>${money(x.principal)}</td><td>${money(x.balance)}</td></tr>`).join(''):''}
+form.addEventListener('submit',e=>{e.preventDefault();calc()});form.addEventListener('input',calc);calc();
+</script>
+</body></html>

@@ -9,6 +9,7 @@ Spanish home: https://mercadosclaro-eng.github.io/calculadoras-claras/
 
 - Mortgage payment: /en/mortgage-calculator.html
 - Auto loan payment and total cost: /en/auto-loan-calculator.html
+- General loan payment, extra payments and interest saved: /en/loan-calculator.html
 - Rent vs buy wealth comparison: /en/rent-vs-buy-calculator.html
 - Compound interest and regular contributions: /en/compound-interest-calculator.html
 - Net salary using user-supplied rates: /en/net-salary-calculator.html
@@ -18,6 +19,7 @@ Spanish home: https://mercadosclaro-eng.github.io/calculadoras-claras/
 
 - Cuota de hipoteca: /hipoteca.html
 - Préstamo de coche y coste total: /prestamo-coche.html
+- Préstamo general, pagos extra e intereses ahorrados: /prestamo.html
 - Comprar o alquilar: /comprar-o-alquilar.html
 - Interés compuesto y aportaciones: /interes-compuesto.html
 - Sueldo neto usando tasas del usuario: /sueldo-neto.html
