@@ -1,0 +1,43 @@
+name: Submit Calculadoras Claras to IndexNow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify IndexNow
+        shell: bash
+        run: |
+          cat > payload.json <<'JSON'
+          {
+            "host": "mercadosclaro-eng.github.io",
+            "key": "77cebf288f9b4ff8ad37361c9f1082af",
+            "keyLocation": "https://mercadosclaro-eng.github.io/calculadoras-claras/77cebf288f9b4ff8ad37361c9f1082af.txt",
+            "urlList": [
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/",
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/sueldo-neto.html",
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/hipoteca.html",
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/porcentajes.html",
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/prestamo-coche.html",
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/en/",
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/en/net-salary-calculator.html",
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/en/mortgage-calculator.html",
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/en/percentage-calculator.html",
+              "https://mercadosclaro-eng.github.io/calculadoras-claras/en/auto-loan-calculator.html"
+            ]
+          }
+          JSON
+          status=$(curl --silent --show-error --output response.txt --write-out "%{http_code}" \
+            --request POST "https://api.indexnow.org/indexnow" \
+            --header "Content-Type: application/json; charset=utf-8" \
+            --data-binary @payload.json)
+          echo "IndexNow HTTP status: ${status}"
+          cat response.txt
+          if [[ "${status}" != "200" && "${status}" != "202" ]]; then
+            exit 1
+          fi
