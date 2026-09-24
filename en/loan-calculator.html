@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Loan calculator with extra payments | Free</title>
+  <meta name="description" content="Calculate loan payments, interest, payoff time and savings from extra monthly payments. Includes an amortization table and multiple currencies.">
+  <meta name="robots" content="index,follow,max-snippet:-1">
+  <link rel="canonical" href="https://mercadosclaro-eng.github.io/calculadoras-claras/en/loan-calculator.html">
+  <link rel="alternate" hreflang="es" href="https://mercadosclaro-eng.github.io/calculadoras-claras/prestamo.html">
+  <link rel="alternate" hreflang="en" href="https://mercadosclaro-eng.github.io/calculadoras-claras/en/loan-calculator.html">
+  <link rel="alternate" hreflang="x-default" href="https://mercadosclaro-eng.github.io/calculadoras-claras/en/loan-calculator.html">
+  <link rel="stylesheet" href="../style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Loan calculator with extra payments","url":"https://mercadosclaro-eng.github.io/calculadoras-claras/en/loan-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any browser","inLanguage":"en","isAccessibleForFree":true}</script>
+</head>
+<body>
+<header><nav class="wrap"><a class="brand" href="./">↗ Clear Calculators</a><div class="navlinks"><a href="mortgage-calculator.html">Mortgage</a><a href="auto-loan-calculator.html">Auto loan</a><a href="../prestamo.html">Español</a></div></nav></header>
+<main>
+  <div class="wrap crumbs"><a href="./">Calculators</a> / Loan</div>
+  <section class="hero wrap"><span class="eyebrow">Loans · early repayment</span><h1>Loan calculator with extra payments</h1><p class="lead">Calculate your payment and see how much time and interest you could save by paying a little extra each month.</p></section>
+  <section class="tool wrap">
+    <form class="form" id="loan-form">
+      <label for="currency">Currency</label>
+      <select id="currency"><option value="USD">USD — $</option><option value="EUR">EUR — €</option><option value="GBP">GBP — £</option><option value="CAD">CAD — $</option><option value="AUD">AUD — $</option><option value="INR">INR — ₹</option><option value="MXN">MXN — $</option><option value="BRL">BRL — R$</option></select>
+      <label for="amount">Loan amount</label><input id="amount" type="number" min="0" step="100" value="20000">
+      <div class="row"><div><label for="years">Term (years)</label><input id="years" type="number" min="0.08" max="100" step="0.01" value="5"></div><div><label for="rate">Annual interest rate (%)</label><input id="rate" type="number" min="0" max="100" step="0.01" value="7"></div></div>
+      <label for="extra">Optional extra monthly payment</label><input id="extra" type="number" min="0" step="1" value="50">
+      <button class="calculate" type="submit">Calculate loan</button>
+      <p class="note">The extra payment is applied to principal each month. Check whether your loan allows early repayment and charges a fee.</p>
+    </form>
+    <div class="result"><div class="result-box"><span>Monthly payment with extra</span><strong id="payment">—</strong><p>Required payment: <b id="base-payment">—</b></p><p>Time to pay off: <b id="payoff">—</b></p><p>Interest with extra payments: <b id="interest">—</b></p><p>Interest saved: <b id="saved">—</b></p></div><p class="note">Estimate for a fixed-rate amortizing loan without fees.</p></div>
+  </section>
+  <article class="content wrap">
+    <h2>First 12 months</h2><p>The table separates interest and principal so you can see how the balance falls.</p>
+    <div class="table-wrap"><table class="schedule"><thead><tr><th>Month</th><th>Payment</th><th>Interest</th><th>Principal</th><th>Balance</th></tr></thead><tbody id="schedule"></tbody></table></div>
+    <h2>How the calculation works</h2><p class="formula">Payment = P × r × (1+r)ⁿ / ((1+r)ⁿ − 1)</p><p>P is principal, r is the monthly rate and n is the number of payments. We then simulate each month and apply the extra payment directly to principal.</p>
+    <h2>What to check before paying extra</h2><ul><li>Compare APR and fees as well as the interest rate.</li><li>Check for origination and prepayment fees.</li><li>Keep an emergency fund before accelerating debt payments.</li><li>An extra payment usually saves more interest early in the loan.</li></ul>
+  </article>
+</main>
+<footer><div class="wrap foot"><strong>Clear Calculators</strong><span>Private calculation in your browser</span><a href="./">All calculators</a></div></footer>
+<script>
+const form=document.querySelector('#loan-form');
+function money(v){return new Intl.NumberFormat(navigator.language,{style:'currency',currency:document.querySelector('#currency').value,maximumFractionDigits:2}).format(v)}
+function duration(months){const y=Math.floor(months/12),m=months%12;return (y?y+' '+(y===1?'year':'years'):'')+(y&&m?' and ':'')+(m?m+' '+(m===1?'month':'months'):'')||'0 months'}
+function payment(p,r,n){return r===0?p/n:p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1)}
+function simulate(p,r,monthly){let balance=p,totalInterest=0,months=0,rows=[];while(balance>0.005&&months<1200){const interest=balance*r;let paid=Math.min(monthly,balance+interest);if(paid<=interest&&balance>0)return null;const principal=paid-interest;balance=Math.max(0,balance-principal);months++;totalInterest+=interest;if(months<=12)rows.push({month:months,paid,interest,principal,balance})}return {months,totalInterest,rows}}
+function calc(){const p=Math.max(0,Number(document.querySelector('#amount').value)||0),n=Math.max(1,Math.round((Number(document.querySelector('#years').value)||0)*12)),r=Math.max(0,(Number(document.querySelector('#rate').value)||0)/1200),extra=Math.max(0,Number(document.querySelector('#extra').value)||0),base=payment(p,r,n),regular=simulate(p,r,base),accelerated=simulate(p,r,base+extra);document.querySelector('#base-payment').textContent=money(base);document.querySelector('#payment').textContent=money(base+extra);document.querySelector('#payoff').textContent=accelerated?duration(accelerated.months):'Check the inputs';document.querySelector('#interest').textContent=accelerated?money(accelerated.totalInterest):'—';document.querySelector('#saved').textContent=accelerated&&regular?money(Math.max(0,regular.totalInterest-accelerated.totalInterest)):'—';document.querySelector('#schedule').innerHTML=accelerated?accelerated.rows.map(x=>`<tr><td>${x.month}</td><td>${money(x.paid)}</td><td>${money(x.interest)}</td><td>${money(x.principal)}</td><td>${money(x.balance)}</td></tr>`).join(''):''}
+form.addEventListener('submit',e=>{e.preventDefault();calc()});form.addEventListener('input',calc);calc();
+</script>
+</body></html>
